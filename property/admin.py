@@ -9,6 +9,7 @@ class AccountAdmin(admin.ModelAdmin):
     list_display = ('address', 'price', 'new_building', 'construction_year')
     list_editable = ['new_building']
     list_filter = ('new_building', 'rooms_number', 'floor', 'has_balcony', 'active')
+    raw_id_fields = ('liked_by',)
 
 
 class ComplainAdmin(admin.ModelAdmin):
