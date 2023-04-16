@@ -4,9 +4,9 @@ from .models import Flat, Complaint, Owner
 
 
 class AccountAdmin(admin.ModelAdmin):
-    search_fields = ('town', 'address')
+    search_fields = ('town', 'address', 'id')
     readonly_fields = ['created_at']
-    list_display = ('address', 'price', 'new_building', 'construction_year', 'owners_phonenumber', 'owner_pure_phone')
+    list_display = ('address', 'price', 'new_building', 'construction_year')
     list_editable = ['new_building']
     list_filter = ('new_building', 'rooms_number', 'floor', 'has_balcony', 'active')
     raw_id_fields = ('liked_by',)
@@ -26,8 +26,11 @@ class ComplainAdmin(admin.ModelAdmin):
 
 class OwnerAdmin(admin.ModelAdmin):
     search_fields = ('name',)
-    list_display = ('name', 'pure_phonenumber')
+    list_display = ('name', 'pure_phonenumber', 'owned_flats')
     raw_id_fields = ('flats',)
+
+    def owned_flats(self, obj):
+        return ', '.join(str(flat.id) for flat in obj.flats.all())
 
 
 admin.site.register(Flat, AccountAdmin)
