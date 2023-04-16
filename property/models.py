@@ -70,4 +70,4 @@ class Owner(models.Model):
 
     def __str__(self):
         flats_ids = ', '.join(str(flat.id) for flat in self.flats.all())
-        return f"{self.name} владелец квартир(ы) ID {flats_ids}"
+        return f"{self.name}"
