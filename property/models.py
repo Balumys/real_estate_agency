@@ -70,5 +70,4 @@ class Owner(models.Model):
     flats = models.ManyToManyField(Flat, related_name='owners', verbose_name='квартиры в собственности', db_index=True)
 
     def __str__(self):
-        flats_ids = ', '.join(str(flat.id) for flat in self.flats.all())
         return f"{self.name}"
