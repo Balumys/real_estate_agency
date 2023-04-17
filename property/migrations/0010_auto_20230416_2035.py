@@ -4,10 +4,10 @@ from django.db import migrations
 
 
 def add_flats_to_owner(apps, schema_editor):
-    Flats = apps.get_model('property', 'Flat')
-    Owners = apps.get_model('property', 'Owner')
-    for flat in Flats.objects.all():
-        owners = Owners.objects.filter(name=flat.owner)
+    flats = apps.get_model('property', 'Flat')
+    owners = apps.get_model('property', 'Owner')
+    for flat in flats.objects.all():
+        owners = owners.objects.filter(name=flat.owner)
         for owner in owners:
             owner.flats.add(flat)
 

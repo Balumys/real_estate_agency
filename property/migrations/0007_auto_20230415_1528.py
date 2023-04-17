@@ -4,9 +4,9 @@ from django.db import migrations
 
 
 def validate_phone_number(apps, schema_editor):
-    Flats = apps.get_model('property', 'Flat')
-    Flats = Flats.objects.all()
-    for flat in Flats:
+    flats = apps.get_model('property', 'Flat')
+    flats = flats.objects.all()
+    for flat in flats:
         owner_pure_phone = phonenumbers.parse(flat.owners_phonenumber, "RU")
         if phonenumbers.is_valid_number(owner_pure_phone):
             flat.owner_pure_phone = phonenumbers.format_number(owner_pure_phone, phonenumbers.PhoneNumberFormat.E164)
