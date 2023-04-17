@@ -8,6 +8,7 @@ class OwnersInline(admin.StackedInline):
     raw_id_fields = ('owner',)
 
 
+@admin.register(Flat)
 class FlatAdmin(admin.ModelAdmin):
     search_fields = ('town', 'address', 'id')
     readonly_fields = ['created_at']
@@ -18,6 +19,7 @@ class FlatAdmin(admin.ModelAdmin):
     inlines = [OwnersInline]
 
 
+@admin.register(Complaint)
 class ComplainAdmin(admin.ModelAdmin):
     search_fields = ('flat_complaint', 'user')
     raw_id_fields = ('flat_complaint', 'user')
@@ -30,6 +32,7 @@ class ComplainAdmin(admin.ModelAdmin):
             return obj.complaint_text
 
 
+@admin.register(Owner)
 class OwnerAdmin(admin.ModelAdmin):
     search_fields = ('name',)
     list_display = ('name', 'pure_phonenumber', 'owned_flats')
@@ -37,8 +40,3 @@ class OwnerAdmin(admin.ModelAdmin):
 
     def owned_flats(self, obj):
         return ', '.join(str(flat.id) for flat in obj.flats.all())
-
-
-admin.site.register(Flat, FlatAdmin)
-admin.site.register(Complaint, ComplainAdmin)
-admin.site.register(Owner, OwnerAdmin)
