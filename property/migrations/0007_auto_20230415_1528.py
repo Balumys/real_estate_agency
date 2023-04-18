@@ -6,7 +6,7 @@ from django.db import migrations
 def validate_phone_number(apps, schema_editor):
     flats = apps.get_model('property', 'Flat')
     flats = flats.objects.all()
-    for flat in flats:
+    for flat in flats.iterator():
         owner_pure_phone = phonenumbers.parse(flat.owners_phonenumber, "RU")
         if phonenumbers.is_valid_number(owner_pure_phone):
             flat.owner_pure_phone = phonenumbers.format_number(owner_pure_phone, phonenumbers.PhoneNumberFormat.E164)
