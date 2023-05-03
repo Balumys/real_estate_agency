@@ -21,15 +21,15 @@ class FlatAdmin(admin.ModelAdmin):
 
 @admin.register(Complaint)
 class ComplainAdmin(admin.ModelAdmin):
-    search_fields = ('flat_complaint', 'user')
-    raw_id_fields = ('flat_complaint', 'user')
-    list_display = ('flat_complaint', 'user', 'complaint_preview')
+    search_fields = ('flat', 'user')
+    raw_id_fields = ('flat', 'user')
+    list_display = ('flat', 'user', 'complaint_preview')
 
     def complaint_preview(self, obj):
-        if len(obj.complaint_text) > 50:
-            return obj.complaint_text[:50] + '...'
+        if len(obj.text) > 50:
+            return obj.text[:50] + '...'
         else:
-            return obj.complaint_text
+            return obj.text
 
 
 @admin.register(Owner)

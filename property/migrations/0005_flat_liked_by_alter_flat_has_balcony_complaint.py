@@ -27,8 +27,8 @@ class Migration(migrations.Migration):
             name='Complaint',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('complaint_text', models.TextField(verbose_name='Текст жалобы')),
-                ('flat_complaint', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='property.flat', verbose_name='Квартира на которую пожаловались')),
+                ('text', models.TextField(verbose_name='Текст жалобы')),
+                ('flat', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='property.flat', verbose_name='Квартира на которую пожаловались')),
                 ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL, verbose_name='Кто жаловался')),
             ],
         ),
